@@ -1,0 +1,188 @@
+{
+	"info": {
+		"_postman_id": "a8c71775-d098-47e5-96db-5567d4a5362e",
+		"name": "Week1Assignemnts",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21868608"
+	},
+	"item": [
+		{
+			"name": "CreateIssueInJira",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.value).to.eql(100);\r",
+							"});\r",
+							"createdid = pm.response.json();\r",
+							"pm.globals.set(\"Issueid\", createdid.id);\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "testleafjune2022@gmail.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "gM2LBaQ6MVxkOp7V8oAE7584",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fields\": {\r\n    \"project\":\r\n                {\r\n                    \"key\": \"AUG\"\r\n                },\r\n    \"summary\": \"To Test the API Using Postman and Jira\",\r\n    \"description\": \"\",\r\n    \"issuetype\": {\r\n                    \"name\": \"Bug\"\r\n                }\r\n    }\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://testleafjune2022.atlassian.net/rest/api/2/issue/",
+					"protocol": "https",
+					"host": [
+						"testleafjune2022",
+						"atlassian",
+						"net"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"issue",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "JiraGetAlltheIssues",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "testleafjune2022@gmail.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "gM2LBaQ6MVxkOp7V8oAE7584",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://testleafjune2022.atlassian.net/rest/api/2/search?jql=project=\"AUG\"",
+					"protocol": "https",
+					"host": [
+						"testleafjune2022",
+						"atlassian",
+						"net"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"search"
+					],
+					"query": [
+						{
+							"key": "jql",
+							"value": "project=\"AUG\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "JiraGetAlltheIssues24Hours",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "testleafjune2022@gmail.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "gM2LBaQ6MVxkOp7V8oAE7584",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://testleafjune2022.atlassian.net/rest/api/2/search?jql=project=\"AUG\"%26created>=-24h",
+					"protocol": "https",
+					"host": [
+						"testleafjune2022",
+						"atlassian",
+						"net"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"search"
+					],
+					"query": [
+						{
+							"key": null,
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "created>",
+							"value": "\"-1h\"",
+							"disabled": true
+						},
+						{
+							"key": "jql",
+							"value": "project=\"AUG\"%26created>=-24h"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
